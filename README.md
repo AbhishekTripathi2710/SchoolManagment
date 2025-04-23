@@ -87,7 +87,7 @@ A Node.js API for managing schools with location-based sorting functionality.
 
 ### Add School
 ```
-POST http://localhost:3000/api/schools/addSchool
+POST https://schoolmanagment-0a3b.onrender.com/api/schools/addSchool
 Content-Type: application/json
 
 {
@@ -100,17 +100,52 @@ Content-Type: application/json
 
 ### List Schools
 ```
-GET http://localhost:3000/api/schools/listSchools
+GET https://schoolmanagment-0a3b.onrender.com/api/schools/listSchools
 ```
 
 ### Get Address Suggestions
 ```
-GET http://localhost:3000/api/schools/address-suggestions?query=address
+GET https://schoolmanagment-0a3b.onrender.com/api/schools/address-suggestions?query=address
 ```
 
 ### Get School Distance
 ```
-GET http://localhost:3000/api/schools/distance?schoolId=123&latitude=12.3456&longitude=78.9012
+GET https://schoolmanagment-0a3b.onrender.com/api/schools/distance?schoolId=123&latitude=12.3456&longitude=78.9012
+```
+
+## Deployment
+
+The application is deployed using a multi-service architecture:
+
+### Backend Service
+- **Platform**: Render
+- **URL**: https://schoolmanagment-0a3b.onrender.com
+- **Environment**: Production
+- **Runtime**: Node.js
+- **Port**: 10000
+
+### Database Service
+- **Platform**: Railway
+- **Type**: MySQL
+- **Host**: shortline.proxy.rlwy.net
+- **Port**: 52807
+- **Database**: railway
+
+### Environment Variables
+The following environment variables are required for deployment:
+
+```
+# Database Configuration (Railway)
+DB_HOST=shortline.proxy.rlwy.net
+DB_PORT=52807
+DB_NAME=railway
+DB_USER=root
+DB_PASSWORD=your_railway_db_password
+
+# Application Configuration
+NODE_ENV=production
+PORT=10000
+GOOGLE_MAPS_API_KEY=your_google_maps_api_key
 ```
 
 ## Error Handling
@@ -125,5 +160,7 @@ The API includes proper error handling for:
 
 - Input validation for all fields
 - SQL injection prevention using parameterized queries
-- CORS enabled for cross-origin requests 
+- CORS enabled for cross-origin requests
+- Environment variables for sensitive data
+- HTTPS enforced for all API endpoints
 
